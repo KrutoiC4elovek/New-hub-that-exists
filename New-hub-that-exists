@@ -7,50 +7,77 @@ end
 game:GetService("GuiService"):ClearError()
 
 if game.PlaceId == 11520107397 or game.PlaceId == 6403373529 or game.PlaceId == 9015014224 then
-local bypass;
-    bypass = hookmetamethod(game, "__namecall", function(method, ...) 
-        if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
-            return
-        elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
-            return
-        elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
-            return
-        end
-        return bypass(method, ...)
+    pcall(function()
+        local bypass;
+        bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+            local success, result = pcall(function()
+                if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
+                    return true
+                elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
+                    return true
+                elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
+                    return true
+                end
+                return false
+            end)
+            
+            if success and result then
+                return
+            end
+            
+            return bypass(method, ...)
+        end)
+        
+        pcall(function()
+            if workspace:FindFirstChild("Spot") == nil then
+                local SafeSpot = Instance.new("Part", workspace)
+                SafeSpot.Position = Vector3.new(math.random(-25000,-2500),100,math.random(-25000,-2500))
+                SafeSpot.Name = "Spot"
+                SafeSpot.Size = Vector3.new(500,50,500)
+                SafeSpot.Anchored = true
+                SafeSpot.Transparency = .5
+            end
+        end)
+        
+        pcall(function()
+            if workspace:FindFirstChild("TAntiVoid") == nil then
+                local TournamentAntiVoid = Instance.new("Part", workspace)
+                TournamentAntiVoid.Name = "TAntiVoid"
+                TournamentAntiVoid.Size = Vector3.new(2048, 15, 2048)
+                TournamentAntiVoid.Position = Vector3.new(3420, 70, 3)
+                TournamentAntiVoid.CanCollide = false
+                TournamentAntiVoid.Transparency = 1
+                TournamentAntiVoid.Anchored = true
+            end
+        end)
     end)
-if workspace:FindFirstChild("Spot") == nil then
-local SafeSpot = Instance.new("Part", workspace)
-SafeSpot.Position = Vector3.new(math.random(-25000,-2500),100,math.random(-25000,-2500))
-SafeSpot.Name = "Spot"
-SafeSpot.Size = Vector3.new(500,50,500)
-SafeSpot.Anchored = true
-SafeSpot.Transparency = .5
-end
-if workspace:FindFirstChild("TAntiVoid") == nil then
-local TournamentAntiVoid = Instance.new("Part", workspace)
-TournamentAntiVoid.Name = "TAntiVoid"
-TournamentAntiVoid.Size = Vector3.new(2048, 15, 2048)
-TournamentAntiVoid.Position = Vector3.new(3420, 70, 3)
-TournamentAntiVoid.CanCollide = false
-TournamentAntiVoid.Transparency = 1
-TournamentAntiVoid.Anchored = true
-end
 end
 
 if game.PlaceId == 9431156611 then
-local bypass;
-    bypass = hookmetamethod(game, "__namecall", function(method, ...) 
-        if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.Ban then
-            return
-        elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.AdminGUI then
-            return
-        elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.WS then
-            return
-        elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.WS2 then
-            return
-        end
-        return bypass(method, ...)
+    pcall(function()
+        local bypass;
+        bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+            local success, result = pcall(function()
+                if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.Ban then
+                    return true
+                elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.AdminGUI then
+                    return true
+                elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.WS then
+                    return true
+                elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Events.WS2 then
+                    return true
+                end
+                return false
+            end)
+            
+            if success and result then
+                return
+            end
+            
+            return bypass(method, ...)
+        end)
     end)
+end
 
 local AntiLava = Instance.new("Part", workspace)
 AntiLava.Name = "AntiLava"
